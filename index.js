@@ -64,8 +64,10 @@ app.get('/tele', async function(req,res){
         console.log('Internal RESULT:', result)
         if (result == []) {
             res.sendStatus(404)
+            console.log('Sent 404')
         } else {
             res.send(result)
+            console.log('Sent result')
         }
 
     } catch (err) {
