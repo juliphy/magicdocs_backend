@@ -60,15 +60,8 @@ app.get('/tele', async function(req,res){
         let db = client.db('magicdocs')
         let collection = db.collection('data')
 
-        let result = await collection.find({chatID:chatID}).toArray()
-        console.log('Internal RESULT:', result)
-        if (result == []) {
-            res.sendStatus(404)
-            console.log('Sent 404')
-        } else {
-            res.send(result)
-            console.log('Sent result')
-        }
+        let result = await collection.find({chatID:chatID})
+        console.log(result)
 
     } catch (err) {
         console.log(err)
