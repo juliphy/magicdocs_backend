@@ -100,7 +100,7 @@ app.get('/delete', async function(req,res){
 
         let db = client.db('magicdocs');
         let collection = db.collection('data');
-        let result = await collection.deleteOne({chatID:chatID}).toArray()
+        let result = await collection.deleteOne({chatID:chatID})
         
         console.log(result)
         res.send('Complete')
