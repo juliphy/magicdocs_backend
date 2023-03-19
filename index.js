@@ -62,7 +62,12 @@ app.get('/tele', async function(req,res){
 
         let result = await collection.find({chatID:chatID}).toArray()
         console.log('Internal RESULT:', result)
-        res.send(result)
+        if (result == []) {
+            res.sendStatus(404)
+        } else {
+            res.send(result)
+        }
+
     } catch (err) {
         console.log(err)
     } finally {
