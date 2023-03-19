@@ -103,7 +103,7 @@ app.get('/delete', async function(req,res){
         let result = await collection.deleteOne({chatID:chatID}).toArray()
         
         console.log(result)
-        res.sendStatus(200)
+        res.send('Complete')
         
     } catch (err) { 
         console.log('Error ', err)
