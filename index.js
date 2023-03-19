@@ -15,8 +15,7 @@ app.use((req, res, next) => {
 
 
 app.post('/post', async function(req,res){
-    info = req.body;
-    console.log(info)
+    info = req.body;    
 
     try {
         await client.connect();
@@ -54,6 +53,7 @@ app.get('/page', async function(req,res){
 
 app.get('/tele', async function(req,res){
     let chatID = req.query.chatID;
+    console.log(chatID)
     try {
         await client.connect()
 
@@ -61,8 +61,8 @@ app.get('/tele', async function(req,res){
         let collection = db.collection('data')
 
         let result = await collection.find({chatID:chatID}).toArray()
+        console.log('Internal RESULT:', result)
         res.send(result)
-
     } catch (err) {
         console.log(err)
     } finally {
