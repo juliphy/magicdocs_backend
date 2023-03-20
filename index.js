@@ -60,9 +60,15 @@ app.get('/tele', async function(req,res){
         let db = client.db('magicdocs')
         let collection = db.collection('data')
 
-        let result = await collection.find({chatID:chatID})
-        console.log(result)
-
+        let result = await collection.find({chatID:chatID}).toArray()
+        var endResult = result[0]
+        
+        if (endResult == undefined) {
+            res.sendStatus(404)
+        } else { 
+            res.send(endResult)
+        }
+        
     } catch (err) {
         console.log(err)
     } finally {
