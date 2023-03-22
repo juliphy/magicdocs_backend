@@ -51,6 +51,7 @@ app.get('/page', async function(req,res){
     }
 })
 
+
 app.get('/tele', async function(req,res){
     let chatID = req.query.chatID;
     console.log(chatID)
@@ -76,6 +77,32 @@ app.get('/tele', async function(req,res){
         console.log('Connection closed.')
     }
 })
+
+app.get('/exist', async function(req,res){
+    let id = req.query.id;
+    try {
+        await client.connect()
+
+        let db = client.db('magicdocs')
+        let collection = db.collection('data')
+
+        let result = await collection.find({id:id}).toArray()
+        var endResult = result[0]
+        
+        if (endResult == undefined) {
+            res.sendStatus(404)
+        } else { 
+            res.sendStatus(200)
+        }
+        
+    } catch (err) {
+        console.log(err)
+    } finally {
+        await client.close();
+        console.log('Connection closed.')
+    }
+})
+
 
 app.get('/findid', async function(req,res){
     let chatID = req.query.chatID
