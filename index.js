@@ -120,5 +120,3 @@ app.get('/delete', async function(req,res){
 
 // {fullname: userObject.fullname, name:userObject.firstname, birthdate: userObject.birthdate, passport_id: userObject.passport_id}
 app.listen(3132)
-
-module.exports = app;
