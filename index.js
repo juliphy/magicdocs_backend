@@ -13,26 +13,6 @@ app.use((req, res, next) => {
     next();
 });
 
-
-app.post('/post', async function(req,res){
-    info = req.body;    
-
-    try {
-        await client.connect();
-        const db = client.db("magicdocs");
-        const collection = db.collection("data");
-        const user = info;
-        const result = await collection.insertOne(user);
-    } catch(err) {
-        console.log(err);
-    } finally {
-        await client.close();
-    }
-
-    res.sendStatus(200);
-})
-
-
 app.get('/page', async function(req,res){
     let id = req.query.id;
     try {
@@ -78,32 +58,6 @@ app.get('/tele', async function(req,res){
     }
 })
 
-app.get('/exist', async function(req,res){
-    let id = req.query.id;
-    try {
-        await client.connect()
-
-        let db = client.db('magicdocs')
-        let collection = db.collection('data')
-
-        let result = await collection.find({id:id}).toArray()
-        var endResult = result[0]
-        
-        if (endResult == undefined) {
-            res.sendStatus(404)
-        } else { 
-            res.sendStatus(200)
-        }
-        
-    } catch (err) {
-        console.log(err)
-    } finally {
-        await client.close();
-        console.log('Connection closed.')
-    }
-})
-
-
 app.get('/findid', async function(req,res){
     let chatID = req.query.chatID
     try {
@@ -126,23 +80,6 @@ app.get('/findid', async function(req,res){
     }
 })
 
-app.get('/delete', async function(req,res){
-    let chatID = req.query.chatID
-    try {
-        await client.connect();
-
-        let db = client.db('magicdocs');
-        let collection = db.collection('data');
-        await collection.deleteOne({chatID:chatID})
-        
-        res.send('Complete')
-        
-    } catch (err) { 
-        console.log('Error ', err)
-    } finally {
-        await client.close()
-    }
-})
 
 
 // {fullname: userObject.fullname, name:userObject.firstname, birthdate: userObject.birthdate, passport_id: userObject.passport_id}
