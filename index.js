@@ -21,7 +21,7 @@ app.get('/page', async function(req,res){
         let db = client.db('magicdocs')
         let collection = db.collection('data')
 
-        let result = await collection.find({id:id}).toArray()
+        let result = await collection.find({status:{id:id}}).toArray()
         res.send(result)
     } catch (err) {
         console.log(err)
@@ -39,7 +39,7 @@ app.get('/exist', async function(req,res){
         let db = client.db('magicdocs')
         let collection = db.collection('data')
 
-        let result = await collection.find({id:id}).toArray()
+        let result = await collection.find({status:{id:id}}).toArray()
         var endResult = result[0]
 
         if (endResult == undefined) {
@@ -65,7 +65,7 @@ app.get('/login', async function(req,res){
         let collection = db.collection('data')
         let settings = db.collection('settings')
 
-        let result = await collection.find({id:id}).toArray()
+        let result = await collection.find({status:{id:id}}).toArray()
         let settingsResult = await settings.find({}).toArray()
         var endResult = result[0]
         var endSettingsResult = settingsResult[0]
