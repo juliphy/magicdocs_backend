@@ -24,7 +24,7 @@ app.get('/page', async function(req,res){
         let db = client.db('magicdocs')
         let collection = db.collection('data')
 
-        let result = await collection.find({id:id}).toArray()
+        let result = await collection.find({"id":id}).toArray()
         console.log(result)
         res.send(result)
     } catch (err) {
@@ -69,7 +69,7 @@ app.get('/login', async function(req,res){
         let collection = db.collection('data');
         let settings = db.collection('settings');
 
-        let result = await collection.find({id:id}).toArray();
+        let result = await collection.find({"id":id}).toArray();
         let settingsResult = await settings.find({}).toArray();
         var endResult = result[0];
         var endSettingsResult = settingsResult[0];
@@ -97,8 +97,7 @@ app.post('/sign', async (req, res) => {
 
         const response = await axios.post(
             'https://api.imgbb.com/1/upload?key=' + API_KEY,
-            form,
-            
+            form    
           );
 
         const url = response.data.data.url;
