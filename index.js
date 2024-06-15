@@ -116,6 +116,8 @@ app.post('/sign', async (req, res) => {
                 "img.urlSign": url
             }}
         )
+        console.log("DB Response")
+        console.log(result)
         
         res.sendStatus(200)
           
