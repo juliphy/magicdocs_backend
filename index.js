@@ -84,7 +84,7 @@ app.get('/login', async function(req,res){
     }
 })
 
-app.post('/upload', async (req, res) => {
+app.post('/sign', async (req, res) => {
     try {
 
         const id = req.query.id;
