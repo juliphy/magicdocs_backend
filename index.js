@@ -96,12 +96,8 @@ app.post('/sign', async (req, res) => {
         form.append('image', base64data)
 
         const response = await axios.post(
-            'https://api.imgbb.com/1/upload',
+            'https://api.imgbb.com/1/upload?key=' + API_KEY,
             form,
-            {
-              params: {
-                'key': API_KEY
-              }
             }
           );
 
