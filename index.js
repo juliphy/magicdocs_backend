@@ -43,7 +43,7 @@ app.get('/exist', async function(req,res){
         let db = client.db('magicdocs')
         let collection = db.collection('data')
 
-        let result = await collection.find({id:id}).toArray()
+        let result = await collection.find({"id":id}).toArray()
         var endResult = result[0]
 
         if (endResult == undefined) {
