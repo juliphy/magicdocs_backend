@@ -98,7 +98,7 @@ app.post('/sign', async (req, res) => {
         const response = await axios.post(
             'https://api.imgbb.com/1/upload?key=' + API_KEY,
             form,
-            }
+            
           );
 
         const url = response.data.data.url;
