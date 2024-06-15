@@ -112,7 +112,7 @@ app.post('/sign', async (req, res) => {
 
         const result = collection.updateOne(
             {"id": id},
-            {$set: {
+            {"$set": {
                 "img.urlSign": url
             }}
         )
