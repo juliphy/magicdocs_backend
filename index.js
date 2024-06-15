@@ -88,6 +88,7 @@ app.post('/sign', async (req, res) => {
     try {
 
         const id = req.query.id;
+        console.log(id);
 
         const base64data = req.body.image;
 
